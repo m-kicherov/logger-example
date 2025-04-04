@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  logger_example:
+    image: logger-example:latest
+    build:
+      context: ../..
+      dockerfile: infra/docker/Dockerfile
+    restart: always
+    command: /docker-entrypoint.sh python app.py
+    environment:
+      - API_KEY=""
+    volumes:
+      - ../../src:/app
+    deploy:
+      replicas: 2
